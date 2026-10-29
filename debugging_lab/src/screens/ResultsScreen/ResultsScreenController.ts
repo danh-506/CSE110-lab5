@@ -1,3 +1,4 @@
+//import { timeStamp } from "node:console";
 import { ScreenController } from "../../types.ts";
 import type { ScreenSwitcher } from "../../types.ts";
 import {
@@ -61,7 +62,17 @@ export class ResultsScreenController extends ScreenController {
 		if (!response.ok) {
 			throw new Error("Unable to save score");
 		}
-		return (await response.json()) as LeaderboardEntry[];
+		let raw_leaderboard = await response.json();
+		let leaderboard: LeaderboardEntry[] = [];
+		for (let i = 0; i < raw_leaderboard.length; i++){
+			let score_entry = {
+				score: raw_leaderboard[i].score,
+				timestamp: raw_leaderboard[i].time
+			}
+
+			leaderboard.push(score_entry);
+		}
+		return (leaderboard) as LeaderboardEntry[];
 	}
 
 	/**

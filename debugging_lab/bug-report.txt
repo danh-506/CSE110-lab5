@@ -42,3 +42,12 @@ end game of the controller to see what would cause the screen to constantly
 refresh and leave it at the result screen.
 The issue was missing () for the stop timer method which caused the 
 code to not recognize it was a function.
+
+Ticket 5:
+Actual Cause
+file/function: ResultScreenController.ts / submitScoreToServer()
+Fix
+Hypothesis Testing
+Similar to the menu stat problem, the format was imported Wrong
+the data from the server was imported raw into the game with the wrong format
+so the view file was not able to recognize the time.
