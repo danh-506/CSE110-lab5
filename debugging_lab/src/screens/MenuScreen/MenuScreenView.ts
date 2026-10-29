@@ -66,6 +66,7 @@ export class MenuScreenView implements View {
 			align: "center",
 		});
 		this.group.add(this.statsText);
+		
 	}
 
 	/**

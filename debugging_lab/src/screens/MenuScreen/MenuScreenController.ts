@@ -44,11 +44,24 @@ export class MenuScreenController extends ScreenController {
 	 * Load leaderboard stats from the Express server
 	 */
 	private async loadStatsFromServer(): Promise<LeaderboardStats> {
-		const response = await fetch("/api/stat");
+		const response = await fetch("/api/leaderboard");
 		if (!response.ok) {
 			throw new Error("Unable to load stats");
 		}
-		return (await response.json()) as LeaderboardStats;
+		let raw_leaderboard = await response.json();
+
+		let average = 0;
+		for (let i = 0; i < raw_leaderboard.length; i++){
+			average += raw_leaderboard[i].score;
+		}
+		average /= raw_leaderboard.length;
+
+		let stats: LeaderboardStats | null = {
+			count: raw_leaderboard.length,
+			best: raw_leaderboard[0].score,
+			average: average
+		};
+		return stats;
 	}
 
 	/**

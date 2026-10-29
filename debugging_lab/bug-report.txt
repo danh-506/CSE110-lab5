@@ -1,0 +1,11 @@
+Ticket 1: 
+Actual Cause
+file/function: MenuScreenController.ts / loadStatsFromServer()
+Fix
+Backward Tracing
+1. Symptom: Undefined stat bar under start button
+2. Traced back to: error from then to: view file updateStats() to 
+    Controller file refreshStats() to loadStatsfromServer()
+3. Buggy code: incorrect string in fetch to leaderboard ("api/stat" to "api/leaderboard")
+    and incorrect format for best, average, count for Leaderboard type 
+    (raw leaderboard turned as a LedaerboardStat)
