@@ -51,14 +51,17 @@ export class MenuScreenController extends ScreenController {
 		let raw_leaderboard = await response.json();
 
 		let average = 0;
+		let best = 0;
 		for (let i = 0; i < raw_leaderboard.length; i++){
 			average += raw_leaderboard[i].score;
+			if (best < raw_leaderboard[i].score)
+				best = raw_leaderboard[i].score;
 		}
 		average /= raw_leaderboard.length;
 
 		let stats: LeaderboardStats | null = {
 			count: raw_leaderboard.length,
-			best: raw_leaderboard[0].score,
+			best: best,
 			average: average
 		};
 		return stats;

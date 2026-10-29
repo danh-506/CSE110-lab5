@@ -9,3 +9,14 @@ Backward Tracing
 3. Buggy code: incorrect string in fetch to leaderboard ("api/stat" to "api/leaderboard")
     and incorrect format for best, average, count for Leaderboard type 
     (raw leaderboard turned as a LedaerboardStat)
+
+Ticket 2: 
+Actual Cause
+file/function: MenuScreenController.ts / loadStatsFromServer()
+Fix
+Backward Tracing
+1. Symptom: Wrong best stat is displayed
+2. Traced back to: text displayed from updateStats() to information from
+    Controller file refreshStats() which is from loadStatsfromServer()
+3. Buggy code: similar to ticket 1, the format for leaderboard stats was Wrong
+    output was fetched directly from leaderboard.json without converting format
