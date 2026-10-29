@@ -30,3 +30,15 @@ Hypothesis: There is an issue with the random generator
 This led me to look at the randomization and I found that 
 the round method on the random only applied to the random not 
 range setters ((max-min)+min), so there would only be a 1 or 0 generated
+
+Ticket 4: 
+Actual Cause
+file/function: GameScreenController.ts / endGame()
+Fix
+Hypothesis Testing
+At first thought it was an issue with result controller but realized
+the only file that calls the screen is game controller so I looked at the 
+end game of the controller to see what would cause the screen to constantly
+refresh and leave it at the result screen.
+The issue was missing () for the stop timer method which caused the 
+code to not recognize it was a function.
