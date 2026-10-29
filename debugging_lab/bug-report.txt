@@ -20,3 +20,13 @@ Backward Tracing
     Controller file refreshStats() which is from loadStatsfromServer()
 3. Buggy code: similar to ticket 1, the format for leaderboard stats was Wrong
     output was fetched directly from leaderboard.json without converting format
+
+Ticket 3: 
+Actual Cause
+file/function: GameScreenView.ts / randomizeLemonPosition()
+Fix
+Hypothesis Testing
+Hypothesis: There is an issue with the random generator
+This led me to look at the randomization and I found that 
+the round method on the random only applied to the random not 
+range setters ((max-min)+min), so there would only be a 1 or 0 generated
