@@ -51,3 +51,13 @@ Hypothesis Testing
 Similar to the menu stat problem, the format was imported Wrong
 the data from the server was imported raw into the game with the wrong format
 so the view file was not able to recognize the time.
+
+Ticket 5 (Different fix):
+Actual Cause
+file/function: index.ts
+Fix
+Hypothesis Testing
+I realized that the index.ts does store the score in a similar format
+as the model, score and time, it is just in the index.ts file, unlike 
+the result model, the time in the leaderboard entry is stored as a "time"
+but the controller/view only recognizes "timestamp" 
